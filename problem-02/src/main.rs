@@ -2,7 +2,7 @@ fn main() {
     // "Stupid is as stupid does, sir!"
     // - A wise man
 
-    let mut current_fibs: Vec<i32> = vec![1, 2];
+    let mut current_fibs = vec![1, 2];
 
     // Let's count up past 4_000_000
     let max_size = 4_000_000;
