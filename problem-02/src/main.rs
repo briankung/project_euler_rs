@@ -8,7 +8,9 @@ fn main() {
     let max_size = 4_000_000;
 
     loop {
-        let next_fib = next_fib(&current_fibs);
+        let last = current_fibs[current_fibs.len()-1];
+        let second_to_last = current_fibs[current_fibs.len()-2];
+        let next_fib = last + second_to_last;
 
         if next_fib > max_size {
             break;
@@ -22,10 +24,4 @@ fn main() {
     let sum: i32 = current_fibs.iter().filter(|&num| num % 2 == 0).sum();
 
     println!("{}", sum);
-}
-
-fn next_fib(fibs: &Vec<i32>) -> i32 {
-    let last = fibs.last().unwrap();
-    let second_to_last = fibs[fibs.len() - 2];
-    last + second_to_last
 }
