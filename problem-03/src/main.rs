@@ -5,7 +5,7 @@
 fn main() {
     let target: i64 = 600_851_475_143;
     // println!("{:?}", (target as f64).sqrt() as i64);
-    println!("{:?}", prime_factor_lt((target as f64).sqrt() as i64, target));
+    println!("{:?}", greatest_prime_factor(target));
 }
 
 fn is_factor(candidate: i64, target: i64) -> bool {
@@ -57,17 +57,18 @@ fn prime_lt(limit: i64) -> i64 {
     primes[primes.len() - 1]
 }
 
-fn prime_factor_lt(limit: i64, target: i64) -> i64 {
+fn greatest_prime_factor(target: i64) -> i64 {
     let mut primes: Vec<i64> = vec![2];
     let mut next_candidate = *primes.last().unwrap();
+    let limit = (target as f64).sqrt() as i64;
 
     'candidates: while primes.last().unwrap() < &limit {
         next_candidate += 1;
 
-        if next_candidate >= limit {
+        if target % next_candidate != 0 {
+            continue;
+        } else if next_candidate >= limit {
             break;
-        } else if target % next_candidate != 0 {
-            continue
         }
 
         for prime in primes.iter() {
